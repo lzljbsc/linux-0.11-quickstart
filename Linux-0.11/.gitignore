@@ -8,6 +8,12 @@ boot/setup.disasm
 tools/data.bin
 tools/system.bin
 tools/system.exe
+kernel/blk_drv/blk_drv.a
+kernel/chr_drv/chr_drv.a
+kernel/chr_drv/tty_ioctl.s
+kernel/math/math.a
+kernel/traps.s
+lib/lib.a
 
 
 
