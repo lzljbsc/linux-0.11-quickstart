@@ -5,6 +5,9 @@ boot/bootsect.bin
 boot/bootsect.disasm
 boot/setup.bin  
 boot/setup.disasm
+tools/data.bin
+tools/system.bin
+tools/system.exe
 
 
 
