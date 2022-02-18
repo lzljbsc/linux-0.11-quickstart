@@ -1,0 +1,12 @@
+*.o
+bochsout.txt
+system.map
+boot/bootsect.bin
+boot/bootsect.disasm
+boot/setup.bin  
+boot/setup.disasm
+
+
+
+
+
