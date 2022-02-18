@@ -1,4 +1,5 @@
 *.o
+tmp_make
 bochsout.txt
 system.map
 boot/bootsect.bin

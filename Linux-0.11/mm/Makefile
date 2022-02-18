@@ -29,7 +29,7 @@ clean:
 dep:
 	sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
 	(for i in *.c;do $(CPP) -M $$i;done) >> tmp_make
-	copy tmp_make Makefile
+	cp tmp_make Makefile
 
 ### Dependencies:
 memory.o: memory.c ../include/signal.h ../include/sys/types.h \

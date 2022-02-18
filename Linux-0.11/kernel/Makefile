@@ -43,7 +43,7 @@ dep:
 	sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
 	(for i in *.c;do echo -n `echo $$i | sed 's,\.c,\.s,'`" "; \
 		$(CPP) -M $$i;done) >> tmp_make
-	copy tmp_make Makefile
+	cp tmp_make Makefile
 	(make -C chr_drv dep)
 	(make -C blk_drv dep)
 

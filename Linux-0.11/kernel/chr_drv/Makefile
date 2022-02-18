@@ -42,7 +42,7 @@ dep:
 	sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
 	(for i in *.c;do echo -n `echo $$i | sed 's,\.c,\.s,'`" "; \
 		$(CPP) -M $$i;done) >> tmp_make
-	copy tmp_make Makefile
+	cp tmp_make Makefile
 
 ### Dependencies:
 console.s console.o: console.c ../../include/linux/sched.h \

@@ -157,12 +157,7 @@ backup: clean
 dep:
 	sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
 	(for i in init/*.c;do echo -n "init/";$(CPP) -M $$i;done) >> tmp_make
-#	cp tmp_make Makefile
-#	(cd fs; make dep)
-#	(cd kernel; make dep)
-#	(cd mm; make dep)
-	
-	copy tmp_make Makefile
+	cp tmp_make Makefile
 	(make -C fs dep)
 	(make -C kernel dep)
 	(make -C mm dep)

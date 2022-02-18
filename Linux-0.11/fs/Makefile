@@ -29,7 +29,7 @@ clean:
 dep:
 	sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
 	(for i in *.c;do $(CPP) -M $$i;done) >> tmp_make
-	copy tmp_make Makefile
+	cp tmp_make Makefile
 
 ### Dependencies:
 bitmap.o: bitmap.c ../include/string.h ../include/linux/sched.h \
@@ -52,11 +52,10 @@ exec.o: exec.c ../include/errno.h ../include/string.h \
   ../include/linux/fs.h ../include/linux/sched.h ../include/linux/head.h \
   ../include/linux/mm.h ../include/signal.h ../include/linux/kernel.h \
   ../include/asm/segment.h
-fcntl.o: fcntl.c ../include/string.h ../include/errno.h \
-  ../include/linux/sched.h ../include/linux/head.h ../include/linux/fs.h \
-  ../include/sys/types.h ../include/linux/mm.h ../include/signal.h \
-  ../include/linux/kernel.h ../include/asm/segment.h ../include/fcntl.h \
-  ../include/sys/stat.h
+fcntl.o: fcntl.c ../include/errno.h ../include/linux/sched.h \
+  ../include/linux/head.h ../include/linux/fs.h ../include/sys/types.h \
+  ../include/linux/mm.h ../include/signal.h ../include/linux/kernel.h \
+  ../include/asm/segment.h ../include/fcntl.h ../include/sys/stat.h
 file_dev.o: file_dev.c ../include/errno.h ../include/fcntl.h \
   ../include/sys/types.h ../include/linux/sched.h ../include/linux/head.h \
   ../include/linux/fs.h ../include/linux/mm.h ../include/signal.h \
@@ -66,16 +65,15 @@ inode.o: inode.c ../include/string.h ../include/sys/stat.h \
   ../include/sys/types.h ../include/linux/sched.h ../include/linux/head.h \
   ../include/linux/fs.h ../include/linux/mm.h ../include/signal.h \
   ../include/linux/kernel.h ../include/asm/system.h
-ioctl.o: ioctl.c ../include/string.h ../include/errno.h \
-  ../include/sys/stat.h ../include/sys/types.h ../include/linux/sched.h \
-  ../include/linux/head.h ../include/linux/fs.h ../include/linux/mm.h \
-  ../include/signal.h
+ioctl.o: ioctl.c ../include/errno.h ../include/sys/stat.h \
+  ../include/sys/types.h ../include/linux/sched.h ../include/linux/head.h \
+  ../include/linux/fs.h ../include/linux/mm.h ../include/signal.h
 namei.o: namei.c ../include/linux/sched.h ../include/linux/head.h \
   ../include/linux/fs.h ../include/sys/types.h ../include/linux/mm.h \
   ../include/signal.h ../include/linux/kernel.h ../include/asm/segment.h \
   ../include/string.h ../include/fcntl.h ../include/errno.h \
   ../include/const.h ../include/sys/stat.h
-open.o: open.c ../include/string.h ../include/errno.h ../include/fcntl.h \
+open.o: open.c ../include/errno.h ../include/fcntl.h \
   ../include/sys/types.h ../include/utime.h ../include/sys/stat.h \
   ../include/linux/sched.h ../include/linux/head.h ../include/linux/fs.h \
   ../include/linux/mm.h ../include/signal.h ../include/linux/tty.h \
