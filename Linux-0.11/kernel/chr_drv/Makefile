@@ -32,17 +32,17 @@ chr_drv.a: $(OBJS)
 	sync
 
 keyboard.s: keyboard.S ../../include/linux/config.h
-	$(CPP) -traditional keyboard.S -o keyboard.s
+#	$(CPP) -traditional keyboard.S -o keyboard.s
 
 clean:
-	rm -f core *.o *.a tmp_make keyboard.s
+	rm -f core *.o *.a tmp_make 
 	for i in *.c;do rm -f `basename $$i .c`.s;done
 
 dep:
 	sed '/\#\#\# Dependencies/q' < Makefile > tmp_make
 	(for i in *.c;do echo -n `echo $$i | sed 's,\.c,\.s,'`" "; \
 		$(CPP) -M $$i;done) >> tmp_make
-	cp tmp_make Makefile
+	copy tmp_make Makefile
 
 ### Dependencies:
 console.s console.o: console.c ../../include/linux/sched.h \

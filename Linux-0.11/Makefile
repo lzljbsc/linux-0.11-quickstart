@@ -102,34 +102,34 @@ tools/system.exe:	boot/head.o init/main.o \
 
 kernel/math/math.a:kernel/math/math_emulate.o
 #	(cd kernel/math ; make)
-	(cd kernel/math & make)
+	(make -C kernel/math)
 	
 kernel/blk_drv/blk_drv.a:$(BLK_DRV_SRC)
 #	(cd kernel/blk_drv ; make)
-	(cd kernel/blk_drv & make)
+	(make -C kernel/blk_drv)
 	
 kernel/chr_drv/chr_drv.a:$(CHR_DRV_SRC)
 #	(cd kernel/chr_drv ; make)
-	(cd kernel/chr_drv & make)
+	(make -C kernel/chr_drv)
 	
 kernel/kernel.o:$(KERNEL_SRC)
 #	(cd kernel; make)
-	(cd kernel & make)
+	(make -C kernel)
 
 mm/mm.o:$(MM_SRC)
 #	(cd mm; make)
-	(cd mm & make)
+	(make -C mm)
 	
 fs/fs.o:$(FS_SRC)
 #	(cd fs; make)
-	(cd fs & make)
+	(make -C fs)
 	
 lib/lib.a:$(LIB_SRC)
-	(cd lib & make)
+	(make -C lib)
 
 boot/setup.bin: boot/setup.asm 
 	$(AS86) -I"$(INC)" -o boot/setup.bin boot/setup.asm
-	 $(DASM) -b 16 boot/setup.bin >boot/setup.disasm
+	$(DASM) -b 16 boot/setup.bin >boot/setup.disasm
 #	$(LD86) -s -o boot/setup boot/setup.o
  
 boot/bootsect.bin:	boot/bootsect.asm 
@@ -143,20 +143,12 @@ tmp.s:	boot/bootsect.s tools/system
 	cat boot/bootsect.s >> tmp.s
 
 clean:
-#	rm -f Image System.map tmp_make core boot/bootsect boot/setup
-#	rm -f init/*.o tools/system tools/build boot/*.o
-#	(cd mm;make clean)
-#	(cd fs;make clean)
-#	(cd kernel;make clean)
-#	(cd lib;make clean)
-	@del /S /Q *.a *.o system.map tools\system.exe
-#	del Image System.map tmp_make core boot\bootsect boot\setup
-#	del init\*.o tools\system tools\build boot\*.o
-#	(cd mm & make clean)
-#	(cd fs & make clean)
-#	(cd kernel & make clean)
-#	(cd lib &make clean)
-
+	rm -f Image System.map tmp_make core boot/bootsect boot/setup
+	rm -f init/*.o tools/system.* boot/*.bin boot/*.disasm boot/*.o
+	(make -C mm clean)
+	(make -C fs clean)
+	(make -C kernel clean)
+	(make -C lib clean)
 
 backup: clean
 	(cd .. ; tar cf - linux | compress16 - > backup.Z)
@@ -171,9 +163,9 @@ dep:
 #	(cd mm; make dep)
 	
 	copy tmp_make Makefile
-	(cd fs & make dep)
-	(cd kernel & make dep)
-	(cd mm & make dep)
+	(make -C fs dep)
+	(make -C kernel dep)
+	(make -C mm dep)
 
 ### Dependencies:
 init/main.o: init/main.c include/unistd.h include/sys/stat.h \
