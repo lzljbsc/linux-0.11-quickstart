@@ -76,7 +76,7 @@ static void add_request(struct blk_dev_struct * dev, struct request * req)
 		return;
 	}
 	for ( ; tmp->next ; tmp=tmp->next)
-		if ((IN_ORDER(tmp,req) || 
+		if ((IN_ORDER(tmp,req) ||
 		    !IN_ORDER(tmp,tmp->next)) &&
 		    IN_ORDER(req,tmp->next))
 			break;

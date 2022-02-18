@@ -3,14 +3,14 @@
  *
  *  (C) 1991  Linus Torvalds
  */
-  
+
 #define __LIBRARY__
 #include <unistd.h>
 #include <time.h>
 
 /*
  * we need this inline - forking from kernel space will result
- * in NO COPY ON WRITE (!!!),  until an execve is executed. This
+ * in NO COPY ON WRITE (!!!), until an execve is executed. This
  * is no problem, but for the stack. This is handled by not letting
  * main() use the stack at all after fork(). Thus, no function
  * calls - which means inline code for fork too, as otherwise we

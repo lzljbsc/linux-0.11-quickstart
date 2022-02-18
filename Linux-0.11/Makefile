@@ -2,7 +2,7 @@
 # if you want the ram-disk device, define this to be the
 # size in blocks.
 #
-RAMDISK =  #-DRAMDISK=512
+RAMDISK = #-DRAMDISK=512
 
 #AS86	=as86 -0 -a
 #LD86	=ld86 -0
@@ -13,13 +13,9 @@ DASM = ndisasm
 
 AS	=as
 LD	=ld
-#LDFLAGS	= -m elf_i386 -Ttext 0 -e startup_32
-LDFLAGS	  = -m i386pe   -Ttext 0 -e startup_32 -s -M --image-base 0x0000 
+LDFLAGS	= -m i386pe   -Ttext 0 -e startup_32 -s -M --image-base 0x0000
 CC	=gcc -march=i386 $(RAMDISK)
 CFLAGS	=-Wall -O2 -fomit-frame-pointer -fno-builtin
-
-
-
 CPP	=cpp -nostdinc -Iinclude
 
 #
