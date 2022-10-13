@@ -90,6 +90,17 @@ void do_signal(long signr,long eax, long ebx, long ecx, long edx,
 	int longs;
 	unsigned long * tmp_esp;
 
+    /* 以下4行代码无实际作用，在测试信号相关功能时，发现必须要访问
+     * 一下 eip, esp 的地址，才能使用 *(&eip), *(&esp) 赋值成功，
+     * 这4行代码即使放在函数最后也可以，总之需要访问以下
+     * 此处能够使用 *(&eip) 的形式进行原数据的修改，是因为所有的
+     * 参数都是在堆栈中，do_signal 函数是通过汇编代码 call 指令
+     * 调用的，通过取地址的方式可以访问原数据 */
+    unsigned long * tmp;
+    tmp = (unsigned long *)&eip;
+    tmp = (unsigned long *)&esp;
+    if ((unsigned long)tmp) signr = signr;
+
 	sa_handler = (unsigned long) sa->sa_handler;
 	if (sa_handler==1)
 		return;
